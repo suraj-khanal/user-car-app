@@ -17,7 +17,7 @@
 <body>
 
 	<header style="height: 30px; background-color: #7b99ff;"> </header>
-
+	
 	<div class="container">
 		<h2>Dog Details</h2>
 
@@ -34,19 +34,33 @@
 		<img style="height: 60px;"
 			src="https://www.iconpacks.net/icons/1/free-user-group-icon-307-thumb.png" />
 
+		<div class="d-flex justify-content-end">
+			<a class="btn btn-success" href="/dog">Add New Dog</a>
+		</div>
+		
+
 		<h3>Dog Details</h3>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>Name <a href="/sortByName"><button type="button"
-								class="btn">&uarr;</button></a></th>
+								class="btn">&uarr;</button></a> <a href="/sortByNameDesc"><button
+								type="button" class="btn">&darr;</button></a>
+					</th>
 					<th>Color <a href="/sortByColor"><button type="button"
-								class="btn">&uarr;</button></a></th>
+								class="btn">&uarr;</button></a> <a href="/sortByColorDesc"><button
+								type="button" class="btn">&darr;</button></a>
+					</th>
 					<th>Breed<a href="/sortByBreed"><button type="button"
-								class="btn">&uarr;</button></a></th>
+								class="btn">&uarr;</button></a> <a href="/sortByBreedDesc"><button
+								type="button" class="btn">&darr;</button></a>
+					</th>
 					<th>Photo</th>
 					<th>DOB<a href="/sortByDOB"><button type="button"
-								class="btn">&uarr;</button></a></th>
+								class="btn">&uarr;</button></a> <a href="/sortByDOBDesc"><button
+								type="button" class="btn">&darr;</button></a>
+					</th>
+					<th>Action</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -56,10 +70,15 @@
 						<td>${item.name}</td>
 						<td>${item.color}</td>
 						<td>${item.breed}</td>
-						<td><img src="${item.url}" style="height: 120px;"></td>
+						<td><img src="${item.url}" style="height: 120px;"> <a
+							href="/editDogImage?dogname=${item.name}"><button
+									type="button" class="btn btn-secondary">Edit Img</button></a></td>
 						<td>${item.cdate}</td>
-						<td><a href="deleteDog?dogname=${item.name}">
+						<td><a href="deleteDog?dogname=${item.name} ">
 								<button type="button" class="btn btn-danger">Delete</button>
+						</a></td>
+						<td><a href="/editDog?dogname=${item.name}">
+								<button type="button" class="btn btn-info">Edit</button>
 						</a></td>
 
 					</tr>
@@ -71,6 +90,19 @@
 
 	</div>
 
-
 </body>
+
+<footer class="bg-dark text-light text-center py-3 mt-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<p>&copy; 2023 </p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
 </html>
+

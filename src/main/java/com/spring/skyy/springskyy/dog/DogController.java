@@ -1,6 +1,8 @@
 package com.spring.skyy.springskyy.dog;
 
 import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -73,11 +76,24 @@ public class DogController {
 	
 	@GetMapping("/sortByName")
 	public String sortDogsByName(Model model) {
-	    String sql = "SELECT name, color, breed, photo AS url, cdate FROM dogs_tbl ORDER BY name ASC";
+	    String sql = "select name, color, breed, photo as url, cdate from dogs_tbl";
+	    
 	    List<Dog> dogList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Dog.class));
+	    
+	    Comparator<Dog> nameComparator = new Comparator<Dog>() {
+	        @Override
+	        public int compare(Dog dog1, Dog dog2) {
+	            return dog1.getName().compareTo(dog2.getName());
+	        }
+	    };
+	    
+	    Collections.sort(dogList, nameComparator);
+	    
 	    model.addAttribute("dogdata", dogList);
-	    return "showDog";
+	    
+	    return "showDog"; // Here, Spring will add prefix and suffix (e.g., /showDog.jsp)
 	}
+
 
 	@GetMapping("/sortByColor")
 	public String sortDogsByColor(Model model) {
@@ -102,6 +118,87 @@ public class DogController {
 	    model.addAttribute("dogdata", dogList);
 	    return "showDog";
 	}
+	
+	
+	
+	@GetMapping("/sortByNameDesc")
+	public String sortDogsByNameDesc(Model model) {
+	    String sql = "select name, color, breed, photo as url, cdate from dogs_tbl";
+	    
+	    List<Dog> dogList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Dog.class));
+	    
+	    Comparator<Dog> nameComparator = new Comparator<Dog>() {
+	        @Override
+	        public int compare(Dog dog1, Dog dog2) {
+	            return dog2.getName().compareTo(dog1.getName());
+	        }
+	    };
+	    
+	    Collections.sort(dogList, nameComparator);
+	    
+	    model.addAttribute("dogdata", dogList);
+	    
+	    return "showDog"; // Here, Spring will add prefix and suffix (e.g., /showDog.jsp)
+	}
+
+	@GetMapping("/sortByColorDesc")
+	public String sortDogsByColorDesc(Model model) {
+	    String sql = "SELECT name, color, breed, photo AS url, cdate FROM dogs_tbl ORDER BY color DESC";
+	    List<Dog> dogList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Dog.class));
+	    model.addAttribute("dogdata", dogList);
+	    return "showDog";
+	}
+	
+	@GetMapping("/sortByBreedDesc")
+	public String sortDogsByBreedDesc(Model model) {
+	    String sql = "SELECT name, color, breed, photo AS url, cdate FROM dogs_tbl ORDER BY breed DESC";
+	    List<Dog> dogList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Dog.class));
+	    model.addAttribute("dogdata", dogList);
+	    return "showDog";
+	}
+	
+	@GetMapping("/sortByDOBDesc")
+	public String sortDogsByDOBDesc(Model model) {
+	    String sql = "SELECT name, color, breed, photo AS url, cdate FROM dogs_tbl ORDER BY cdate DESC";
+	    List<Dog> dogList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Dog.class));
+	    model.addAttribute("dogdata", dogList);
+	    return "showDog";
+	}
+	
+	@GetMapping("/editDog")
+	public String editDogForm(@RequestParam String dogname, Model model) {
+	    // Retrieve the dog's information by name
+	    String sql = "select name, color, breed, photo as url from dogs_tbl where name = ?";
+	    Dog dog = jdbcTemplate.queryForObject(sql, new Object[] { dogname }, new BeanPropertyRowMapper<>(Dog.class));
+
+	    model.addAttribute("dog", dog);
+
+	    return "editDogForm"; // Create an edit form view (e.g., editDogForm.jsp) to edit the dog's details
+	}
+	
+	@PostMapping("/updateDog")
+	public String updateDog(@ModelAttribute Dog updatedDog, @RequestParam("originalName") String originalName) {
+	    // Update the dog's information in the database
+	    String sql = "UPDATE dogs_tbl SET name = ?, color = ?, breed = ?, photo = ? WHERE name = ?";
+	    jdbcTemplate.update(sql, updatedDog.getName(), updatedDog.getColor(), updatedDog.getBreed(), updatedDog.getUrl(), originalName);
+
+	    return "redirect:/show-dogs";
+	}
+	
+	
+	//To edit the image of a particular Dog
+	
+	@GetMapping("/editDogImage")
+	public String editDogImage(@RequestParam String dogname, Model model) {
+	    // Retrieve the dog's information by name
+	    String sql = "select name, color, breed, photo as url from dogs_tbl where name = ?";
+	    Dog dog = jdbcTemplate.queryForObject(sql, new Object[] { dogname }, new BeanPropertyRowMapper<>(Dog.class));
+
+	    model.addAttribute("dog", dog);
+
+	    return "editDogForm"; // Create an edit form view (e.g., editDogForm.jsp) to edit the dog's details
+	}
+
 
 
 }
