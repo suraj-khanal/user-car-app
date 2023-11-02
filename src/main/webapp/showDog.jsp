@@ -13,6 +13,13 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+  <style type="text/css">
+        /* Define custom CSS styles */
+        .table-head {
+            text-decoration: none;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -43,25 +50,27 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>Name <a href="/sortByName"><button type="button"
-								class="btn">&uarr;</button></a> <a href="/sortByNameDesc"><button
-								type="button" class="btn">&darr;</button></a>
+					<th>
+						<a class="table-head" href="sortByName?sortname=${sortname}">Name</a>
+					</th>		
+					<th> 
+						<a class="table-head" href="sortByColor?sortname=${sortname}" >Color</a>
 					</th>
-					<th>Color <a href="/sortByColor"><button type="button"
-								class="btn">&uarr;</button></a> <a href="/sortByColorDesc"><button
-								type="button" class="btn">&darr;</button></a>
+					<th> 
+						<a class="table-head">Breed</a>
 					</th>
-					<th>Breed<a href="/sortByBreed"><button type="button"
-								class="btn">&uarr;</button></a> <a href="/sortByBreedDesc"><button
-								type="button" class="btn">&darr;</button></a>
+					<th>
+						<a class="table-head">Photo / Url</a>
 					</th>
-					<th>Photo</th>
-					<th>DOB<a href="/sortByDOB"><button type="button"
-								class="btn">&uarr;</button></a> <a href="/sortByDOBDesc"><button
-								type="button" class="btn">&darr;</button></a>
+					<th>
+						<a class="table-head">DOB</a>
 					</th>
-					<th>Action</th>
-					<th>Action</th>
+					<th>
+						<a class="table-head">Action</a>
+					</th>
+					<th>
+						<a class="table-head">Action</a>
+					</th>
 				</tr>
 			</thead>
 			<tbody>

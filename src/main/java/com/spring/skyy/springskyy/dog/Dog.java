@@ -2,8 +2,15 @@ package com.spring.skyy.springskyy.dog;
 
 import java.sql.Timestamp;
 
-public class Dog {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="dogs_tbl")
+public class Dog {
+	
+	@Id
 	String name;
 	String color;
 	String breed;
