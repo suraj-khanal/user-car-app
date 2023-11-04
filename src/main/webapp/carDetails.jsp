@@ -1,4 +1,4 @@
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.su2n.com/jsp/jstl/core" prefix = "c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -11,11 +11,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>	
 	
 	<style type="text/css">
-	
+        /* Define custom CSS styles */
         .table-head {
             text-decoration: none;
             color: #004953;
-            font-size: 18px;
+            font-size: 20px;
         }
     </style>
     
@@ -30,18 +30,18 @@
 		 <hr/>
 			 <div > 
 			 		<div class="text-center">
-			 			<h2><strong style="color: #1c6a73;">${userName}</strong>'s Car Collection</h2> 
+			 			<h2>Car Details</h2> 
 			 		
 			 		</div>
-			 		<div class="text-center">
-			 			<img style="height: 120px;"
-							src="https://cdn.pixabay.com/photo/2012/04/12/23/47/car-30984_640.png" />
-					</div>
+			 		
+			 		<img style="height: 120px;"
+						src="https://cdn.pixabay.com/photo/2012/04/12/23/47/car-30984_640.png" />
+					<img style="height: 120px;"
+					src="https://imteg.weebly.com/uploads/5/4/9/8/54982803/3690206_orig.jpg" />
+					<img style="height: 120px;"
+						src="https://www.freeiconspng.com/thumbs/car-icon-png/black-car-icons-9.png" />
 			 </div>	 
 		 <hr/>
-		 <div class="mb-3">
-		 	<a href="showWelcome"><button class="btn btn-success">Add New Car</button></a>
-		 </div>
 	<div>
 			<table class="table table-bordered">
 			<thead>
@@ -50,20 +50,16 @@
 						<a class="table-head">Car Name</a>
 					</th>		
 					<th> 
-						<a class="table-head">Car Make</a>
-					</th>
-					
-					 <th> 
-						<a class="table-head">Color</a>
+						<a class="table-head">Make</a>
 					</th>
 					<th> 
 						<a class="table-head">Fuel Type</a>
-					</th>		
-					<th>
-						<a class="table-head">VIN</a>
 					</th>
 					<th>
 						<a class="table-head">Photo</a>
+					</th>
+					<th>
+						<a class="table-head">Car Body</a>
 					</th>
 					<th>
 						<a class="table-head">DOE</a>
@@ -77,30 +73,21 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="item" items="${cardata}">
+				<c:forEach var="item" items="${dogdata}">
 					<tr>
-					
-						<td>${item.carname}</td>
-						
-						<td>${item.carmake}</td>
-						
+						<td>${item.name}</td>
 						<td>${item.color}</td>
-						
-						<td>${item.fueltype}</td>
-						
-						<td>${item.vin}</td>
-						
-						<td><img src="${item.photo}" style="height: 120px;"></td>
-									
-						<td>${item.doe}</td>
-						
-						<td>
-							<button type="button" class="btn btn-danger">Delete</button>
-						</td>
-						
-						<td>
-							<button type="button" class="btn btn-info">Edit</button>
-						</td> 
+						<td>${item.breed}</td>
+						<td><img src="${item.url}" style="height: 120px;"> <a
+							href="/editDogImage?dogname=${item.name}"><button
+									type="button" class="btn btn-secondary">Edit Img</button></a></td>
+						<td>${item.cdate}</td>
+						<td><a href="deleteDog?dogname=${item.name} ">
+								<button type="button" class="btn btn-danger">Delete</button>
+						</a></td>
+						<td><a href="/editDog?dogname=${item.name}">
+								<button type="button" class="btn btn-info">Edit</button>
+						</a></td>
 
 					</tr>
 				</c:forEach>
