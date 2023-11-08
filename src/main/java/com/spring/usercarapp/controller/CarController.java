@@ -28,7 +28,7 @@ public class CarController {
 	@PostMapping("/addCar")
 	public String postCar(@ModelAttribute Car car, HttpSession session) {
 		
-		String authenticatedUsername = (String) session.getAttribute("userName");
+		String authenticatedUsername = (String) session.getAttribute("username");
 		
 		if (authenticatedUsername != null) {
 			
@@ -74,6 +74,5 @@ public class CarController {
 	}
 	
 
-	
 	
 }

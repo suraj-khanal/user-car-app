@@ -86,6 +86,11 @@ public class Car {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	@Override
+	public String toString() {
+		return "Car [cid=" + cid + ", carname=" + carname + ", carmake=" + carmake + ", color=" + color + ", vin=" + vin
+				+ ", fueltype=" + fueltype + ", photo=" + photo + ", doe=" + doe + ", username=" + username + "]";
+	}
 	
 	
 	

@@ -24,6 +24,8 @@ public class UserSignup {
 	private String password;
 	private Timestamp doe;
 	
+	@Column(columnDefinition = "TEXT")
+	private String userProfileImage;
 	
 	public int getUid() {
 		return uid;
@@ -61,7 +63,12 @@ public class UserSignup {
 	public void setDoe(Timestamp doe) {
 		this.doe = doe;
 	}
-	
+	public String getUserProfileImage() {
+		return userProfileImage;
+	}
+	public void setUserProfileImage(String userProfileImage) {
+		this.userProfileImage = userProfileImage;
+	}
 	
 	
 }

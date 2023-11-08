@@ -2,7 +2,6 @@ package com.spring.usercarapp.controller;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -48,11 +47,14 @@ public class LoginController {
 			loginHistory.setUserSignup(dbSignup);
 			LoginHistory dbEntity = loginHistoryRepository.save(loginHistory);
 			
+			//This line sets the max interval on session
+			//session.setMaxInactiveInterval(30);
 
 			session.setAttribute("username", userSignup.getUsername());
 			session.setAttribute("loginHistoryDbId", dbEntity.getLhid());
 			
-			return "welcome";	
+			
+			return "redirect:/showWelcome";
 			
 		}else {
 			
@@ -61,27 +63,6 @@ public class LoginController {
 		}
 		
 	}
-	
-	@GetMapping("/showLoginHistory")
-	public String showUserLoginHistory(HttpSession session, Model model) {
-			
-	    String username = (String) session.getAttribute("username");
-
-	    if (username != null) {
-	    	
-	    	List<LoginHistory> loginHistoryList = loginHistoryRepository.findByUsername(username);
-	    	model.addAttribute("loginHistory", loginHistoryList);
-	       
-	        return "loginhistory";
-	        
-	    } else {
-	        
-	        model.addAttribute("loginErrMsg", "User not found in the session.");
-	        return "login"; 
-	    }
-			
-	} 
-		
 
 	
 }

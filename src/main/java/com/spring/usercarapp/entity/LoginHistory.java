@@ -24,9 +24,11 @@ public class LoginHistory {
 	private Timestamp login_time;
 	private Timestamp logout_time;
 	
+	private long durationInMillis;
+	
 	private String duration;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="username", unique = false, nullable =false)
 	private UserSignup userSignup;
 
@@ -61,6 +63,15 @@ public class LoginHistory {
 	public void setUserSignup(UserSignup userSignup) {
 		this.userSignup = userSignup;
 	}
+	
+	public long getDurationInMillis() {
+		return durationInMillis;
+	}
+
+	public void setDurationInMillis(long durationInMillis) {
+		this.durationInMillis = durationInMillis;
+	}
+
 	public String getDuration() {
 		return duration;
 	}

@@ -25,6 +25,7 @@
 	<hr>
 	<span style="font-weight: bold;font-size: 16px;color:red; font-family:monospace;">${loginErrMsg}</span>
 	<span style="font-weight: bold;font-size: 16px;color:red; font-family:monospace;">${messageLogout}</span>
+	<span style="font-weight: bold;font-size: 16px;color:red; font-family:monospace;">${error}</span>
 	 <hr/>
 	 
 	<form action="auth" method="post">

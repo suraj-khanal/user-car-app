@@ -27,6 +27,11 @@
 </header>
 
 <div class="container">
+	<div class="mt-3">
+			<a style="text-decoration:none; font-size:20px;" class="col-3" href="${pageContext.request.contextPath}/showWelcome">
+				 		Welcome Page 
+			</a>
+		</div>
 	<div>
 		 <hr/>
 			 <div > 

@@ -17,7 +17,5 @@ public interface LoginHistoryRepository extends JpaRepository<LoginHistory, Inte
 	@Query("from LoginHistory le where le.userSignup.username = ?1")
 	public List<LoginHistory> findByUsername(String username);
 	
-	 List<LoginHistory> findAllByDurationIsNotNull();
-	
 
 }
