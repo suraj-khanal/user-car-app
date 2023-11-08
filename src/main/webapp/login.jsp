@@ -24,6 +24,7 @@
 	 <img style="height: 120px;" src="https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"/>
 	<hr>
 	<span style="font-weight: bold;font-size: 16px;color:red; font-family:monospace;">${loginErrMsg}</span>
+	<span style="font-weight: bold;font-size: 16px;color:red; font-family:monospace;">${messageLogout}</span>
 	 <hr/>
 	 
 	<form action="auth" method="post">

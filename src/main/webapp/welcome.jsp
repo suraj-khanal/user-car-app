@@ -13,26 +13,71 @@
 </head>
 <body>
 
-<header style="height: 30px;background-color: #5797af;">
+<header style="height: 50px;background-color: #5797af;">
+<h3 class="text-center">Welcome <strong style="color: black;">${sessionScope.username}</strong></h3>
 </header>
+				       
 
 <div class="container">
 	<div>
 		 <hr/>
-				 <div class="position-absolute top-1 end-0 me-4">
-				 
+				 <div class="position-absolute top-1 end-0 me-4">		 
 				    <a href="logout">
 				   		 <button class="btn btn-warning">Logout</button>
-				    </a>
-				    
+				    </a>   
 				    </div>
+				    
 			 <div class="row text-center"> 
-			 		<div class="col-md-6">
-				        <h3>Welcome <strong style="color: #1c6a73;">${welcomeMsg}</strong></h3>
-				        <img style="height: 80px; width: 80px; border-radius: 50px" alt="noavatar" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
-				        <div class="text-secondary"><a href="#"> View Profile --> soon </a></div>
+			 		<div class="col-3">
+						<a href="showUserInfo" class="text-secondary fw-bold" style="text-decoration:none; cursor:pointer;"  
+								data-bs-toggle="modal" data-bs-target="#profileModal">
+				        <img style="height: 80px; width: 80px; border-radius: 50px" 
+				        		alt="noavatar" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
+				         View Profile</a>
 				    </div>
 			 </div>
+			 
+	<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="profileModalLabel">User Profile</h5>
+	                <button type="button" style="border-radius:50px;" class="close btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <div class="modal-body">
+	                
+	              	<form >
+	
+		<div class="form-group" style="width: 70%;">
+  	           <b> Name</b>
+  	           <input type="text" value="${userdata.name}" id="name" name="name" class="form-control" required>
+	    </div>
+	    
+	    <div class="form-group mt-2" style="width: 70%;">
+  	           <b>Username</b>
+  	           <input type="text" value="${userdata.username}"  id="username" name="username" class="form-control" required>
+	    </div>
+	    
+	    <div class="form-group mt-2" style="width: 70%;">
+  	           <b>Email</b>
+  	           <input type="email" id="email" name="email" class="form-control" required>
+	    </div>
+	    
+	    <div class="form-group mt-2" style="width: 70%;">
+  	           <b>Password</b>
+  	           <input type="password" id="password" name="password" class="form-control" required>
+	    </div>
+	    </form>
+					                
+	            </div>
+	        </div>
+	    </div>
+	</div>
+		
+		
+	
 			
 	 </div>
 	<div class="text-center">
@@ -103,7 +148,6 @@
 </div>
 </div>
 
-
-
 </body>
+
 </html>

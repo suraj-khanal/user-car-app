@@ -28,7 +28,7 @@ public class LoginController {
 	@Autowired
 	private LoginHistoryRepository loginHistoryRepository;
 	
-	@GetMapping("/login")
+	@GetMapping({"/login","/"})
 	public String showLoginPage() {
 		
 		return "login";
@@ -46,14 +46,16 @@ public class LoginController {
 			loginHistory.setLogin_time(new Timestamp(new Date().getTime()));
 			
 			loginHistory.setUserSignup(dbSignup);
-			loginHistoryRepository.save(loginHistory);
-	
+			LoginHistory dbEntity = loginHistoryRepository.save(loginHistory);
 			
-			String username = userSignup.getUsername();
-			model.addAttribute("welcomeMsg", username);	
-			session.setAttribute("userName", username);
+
+			session.setAttribute("username", userSignup.getUsername());
+			session.setAttribute("loginHistoryDbId", dbEntity.getLhid());
+			
 			return "welcome";	
+			
 		}else {
+			
 			model.addAttribute("loginErrMsg", "Invalid Username or Password!");
 			return "login";
 		}
@@ -63,15 +65,15 @@ public class LoginController {
 	@GetMapping("/showLoginHistory")
 	public String showUserLoginHistory(HttpSession session, Model model) {
 			
-	    String username = (String) session.getAttribute("userName");
+	    String username = (String) session.getAttribute("username");
 
 	    if (username != null) {
+	    	
+	    	List<LoginHistory> loginHistoryList = loginHistoryRepository.findByUsername(username);
+	    	model.addAttribute("loginHistory", loginHistoryList);
 	       
-	        List<LoginHistory> loginHistoryList = loginHistoryRepository.findByUserSignupUsername(username);
-
-	        model.addAttribute("loginHistory", loginHistoryList);
-	        
 	        return "loginhistory";
+	        
 	    } else {
 	        
 	        model.addAttribute("loginErrMsg", "User not found in the session.");

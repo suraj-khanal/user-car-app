@@ -54,7 +54,7 @@
 	    </div>
 	    
 	     <div class="form-group" style="width: 60%; margin-top: 20px;">
-  	          <a href="login.jsp">Already a User? Login Here</a>
+  	          <a href="login">Already a User? Login Here</a>
 	    </div>
 	    
 	</form> 

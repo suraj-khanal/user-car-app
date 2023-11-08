@@ -18,7 +18,7 @@ public class SignupController {
 	@Autowired
 	private SignupRepository signupRepository;
 	
-	@GetMapping({"/showSignup", "/"})
+	@GetMapping("/showSignup")
 	public String showSignupPage () {
 		
 		

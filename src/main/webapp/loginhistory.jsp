@@ -28,18 +28,22 @@
 
 			</div>
 			<div class="row text-center">
-				
-					<h3>
-						Welcome <strong style="color: #1c6a73;">${userName}</strong>
-					</h3>
+			
+			 	<a style="text-decoration:none; font-size:20px;" class="col-3" href="showWelcome">
+			 		Welcome Page 
+			 		</a>			
+				<h3>
+					Welcome <strong style="color: #1c6a73;">
+						${sessionScope.username} -- ${sessionScope.loginHistoryDbId} </strong>
+				</h3>
 
-		
+
 			</div>
 		</div>
 
 
 		<div class="container mt-4">
-			
+
 			<hr />
 
 			<table class="table">
@@ -49,7 +53,11 @@
 						<th>Username</th>
 						<th>Email</th>
 						<th>Login Time</th>
-						<th>Log Out</th>
+						<th>Logout Time</th>
+						<th>
+							<a class="table-head" href="sortByDuration?sortname=${sortname}">Duration</a>
+						</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -59,7 +67,11 @@
 							<td>${item.userSignup.username}</td>
 							<td>${item.userSignup.email}</td>
 							<td>${item.login_time}</td>
-							<td>${item.logout_time}</td>
+							<td>${item.logout_time}</td>						
+							<td>${item.duration}</td>
+							<td><a href="deleteLoginHistory?lhid=${item.lhid}">
+								<button type="button" class="btn btn-danger">Delete</button>
+						</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

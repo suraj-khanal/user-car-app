@@ -48,7 +48,7 @@ public class CarController {
 	@GetMapping("/show-cars")
 	public String showDogs(Model model,HttpSession session ) {
 		
-		String authenticatedUsername = (String) session.getAttribute("userName");
+		String authenticatedUsername = (String) session.getAttribute("username");
 		 
 		  if (authenticatedUsername != null) {
 		        

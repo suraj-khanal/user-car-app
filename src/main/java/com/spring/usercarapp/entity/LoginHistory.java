@@ -24,6 +24,8 @@ public class LoginHistory {
 	private Timestamp login_time;
 	private Timestamp logout_time;
 	
+	private String duration;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="username", unique = false, nullable =false)
 	private UserSignup userSignup;
@@ -59,13 +61,47 @@ public class LoginHistory {
 	public void setUserSignup(UserSignup userSignup) {
 		this.userSignup = userSignup;
 	}
+	public String getDuration() {
+		return duration;
+	}
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
 
 	@Override
 	public String toString() {
 		return "LoginHistory [lhid=" + lhid + ", login_time=" + login_time + ", logout_time=" + logout_time
-				+ ", userSignup=" + userSignup + "]";
+				+ ", duration=" + duration + ", userSignup=" + userSignup + "]";
 	}
 	
+	public String formatDuration(long durationInMillis) {
+		
+	    long milliseconds = durationInMillis % 1000;
+	    long seconds = (durationInMillis / 1000) % 60;
+	    long minutes = (durationInMillis / (1000 * 60)) % 60;
+	    long hours = (durationInMillis / (1000 * 60 * 60)) % 24;
+	    long days = durationInMillis / (1000 * 60 * 60 * 24);
+
+	    
+	    StringBuilder formattedDuration = new StringBuilder();
+
+	    if (days > 0) {
+	        formattedDuration.append(days).append("d:");
+	    }
+	    if (hours > 0) {
+	        formattedDuration.append(hours).append("h:");
+	    }
+	    if (minutes > 0) {
+	        formattedDuration.append(minutes).append("m:");
+	    }
+	    if (seconds > 0) {
+	        formattedDuration.append(seconds).append("s:");
+	    }
+	    formattedDuration.append(milliseconds).append("ms");
+
+	    return formattedDuration.toString();
+	}
+
 	
-	
+
 }
